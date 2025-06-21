@@ -30,3 +30,6 @@ class Circle extends Shape {
 const circle1 = new Circle(5);
 console.log(circle1.area());
 console.log(circle1.describe());
+
+const circle = new Shape();
+console.log(circle.describe());
