@@ -6,6 +6,26 @@
   <body>
     <input type="password" id="inputPwd" placeholder="Enter the password" />
     <p id="pwdStrength">Strength:</p>
+    <div id="strengthMeter">
+      <div id="strengthBar"></div>
+    </div>
+    <style>
+      #strengthMeter {
+        width: 50%;
+        height: 10px;
+        background-color: #eee;
+        border-radius: 5px;
+      }
+
+      #strengthBar {
+        height: 100%;
+        width: 0%;
+        background-color: red;
+        transition: width 0.3s ease, background-color 0.3s ease;
+        border-radius: 5px;
+      }
+    </style>
+
     <script src="script.js"></script>
   </body>
 </html>
