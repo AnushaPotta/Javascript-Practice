@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Box styling app</title>
+  </head>
+  <body>
+    <h2>Fill the fields to apply styles to the box</h2>
+    <style>
+      #box {
+        width: 100px;
+        height: 100px;
+        color: black;
+        background-color: bisque;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1rem;
+        border-radius: 0px;
+      }
+    </style>
+    <div id="box">I am the box!</div>
+    <br /><br />
+    <label>
+      Box width:
+      <input id="widthInput" type="number" />
+    </label>
+    <br />
+    <br />
+    <label>
+      Box height:
+      <input id="heightInput" type="number" />
+    </label>
+    <br /><br />
+    <label>
+      Background color:
+      <input
+        id="bgColor"
+        type="text"
+        placeholder="e.g
+      blue" /></label
+    ><br />
+    <br />
+    <label>
+      Text color: <input id="color" type="text" placeholder="e.g red"
+    /></label>
+    <br /><br />
+    <label>
+      Border radius: <input id="radius" type="number" placeholder="e.g 5" />
+    </label>
+    <br /><br />
+    <button id="styleBtn">Apply changes</button>
+    <script src="script.js"></script>
+  </body>
+</html>
