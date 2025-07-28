@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Note taking app</title>
+  </head>
+  <body>
+    <form id="noteForm">
+      <label>
+        Title: <input type="text" id="titleInput" /> <br />
+        <br />
+      </label>
+      <textarea
+        id="notes"
+        rows="10"
+        cols="30"
+        placeholder="Enter your notes..."
+      ></textarea>
+      <br />
+      <br />
+      <button id="saveBtn">Save</button>
+    </form>
+
+    <h2>Your notes:</h2>
+    <ol id="notesList"></ol>
+    <script src="script.js"></script>
+  </body>
+</html>
