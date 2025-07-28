@@ -42,6 +42,20 @@ function displayNotes() {
         const li = document.createElement("li");
         li.textContent = `${n.title} - ${n.note}`;
         notesList.appendChild(li);
+        const btn = document.createElement("button");
+        btn.textContent = "delete";
+
+        btn.addEventListener("click", () => {
+          const updatedNotes = parsedNote.filter((deletedNote) => {
+            return !(
+              deletedNote.title === n.title && deletedNote.note === n.note
+            );
+          });
+          localStorage.setItem("note", JSON.stringify(updatedNotes));
+          displayNotes();
+        });
+        li.appendChild(btn);
+        notesList.appendChild(li);
       });
     } else {
       notesList.innerHTML = "No saved notes";
