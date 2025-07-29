@@ -6,7 +6,7 @@ const saveBtn = document.getElementById("saveBtn");
 const notesList = document.getElementById("notesList");
 const noteForm = document.getElementById("noteForm");
 
-window.addEventListener("DOMContentLoaded", displayNotes());
+window.addEventListener("DOMContentLoaded", displayNotes);
 
 saveBtn.addEventListener("click", () => {
   const title = titleInput.value.trim();
@@ -36,7 +36,7 @@ function displayNotes() {
   try {
     const savedNote = localStorage.getItem("note");
     const parsedNote = JSON.parse(savedNote);
-    if (parsedNote) {
+    if (parsedNote && parsedNote.length > 0) {
       notesList.innerHTML = "";
       parsedNote.forEach((n) => {
         const li = document.createElement("li");
@@ -44,6 +44,7 @@ function displayNotes() {
         notesList.appendChild(li);
         const btn = document.createElement("button");
         btn.textContent = "delete";
+        btn.style.marginLeft = "1rem";
 
         btn.addEventListener("click", () => {
           const updatedNotes = parsedNote.filter((deletedNote) => {
@@ -51,6 +52,7 @@ function displayNotes() {
               deletedNote.title === n.title && deletedNote.note === n.note
             );
           });
+
           localStorage.setItem("note", JSON.stringify(updatedNotes));
           displayNotes();
         });
@@ -58,7 +60,7 @@ function displayNotes() {
         notesList.appendChild(li);
       });
     } else {
-      notesList.innerHTML = "No saved notes";
+      notesList.innerHTML = "<div>No saved notes</div>";
     }
   } catch (error) {
     console.error("Error loading notes:", error);
