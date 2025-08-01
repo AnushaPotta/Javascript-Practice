@@ -6,7 +6,7 @@ const taskList = document.getElementById("taskList");
 
 const taskForm = document.getElementById("taskForm");
 
-window.addEventListener("DOMContentLoaded", displayTasks());
+window.addEventListener("DOMContentLoaded", displayTasks);
 
 addBtn.addEventListener("click", (event) => {
   event.preventDefault();
@@ -19,6 +19,7 @@ addBtn.addEventListener("click", (event) => {
     const data = {
       task: task,
       due: due,
+      done: false,
     };
     existingTasks.push(data);
     localStorage.setItem("tasks", JSON.stringify(existingTasks));
@@ -42,6 +43,10 @@ function displayTasks() {
       const task = `${t.task} - due by ${t.due}`;
       const li = document.createElement("li");
       li.textContent = task;
+      if (t.done === true) {
+        li.style.textDecoration = "line-through";
+        li.style.color = "green";
+      }
       const btn = document.createElement("button");
       btn.style.marginLeft = "10px";
       btn.textContent = "Done";
@@ -49,11 +54,16 @@ function displayTasks() {
       delBtn.textContent = "Delete";
       delBtn.style.marginLeft = "10px";
       btn.addEventListener("click", () => {
-        li.style.textDecoration = "line-through";
-        li.style.color = "green";
+        t.done = true;
+        localStorage.setItem("tasks", JSON.stringify(parsedTasks));
+        displayTasks();
       });
       delBtn.addEventListener("click", () => {
-        li.remove();
+        const updatedTasks = parsedTasks.filter((taskItem) => {
+          return !(taskItem.task === t.task && taskItem.due === t.due);
+        });
+        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+        displayTasks();
       });
       li.appendChild(btn);
       li.appendChild(delBtn);
