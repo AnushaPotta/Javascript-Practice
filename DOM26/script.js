@@ -6,6 +6,8 @@ const taskList = document.getElementById("taskList");
 
 const taskForm = document.getElementById("taskForm");
 
+window.addEventListener("DOMContentLoaded", displayTasks());
+
 addBtn.addEventListener("click", (event) => {
   event.preventDefault();
 
@@ -29,10 +31,20 @@ function displayTasks() {
   console.log(savedTasks);
   const parsedTasks = JSON.parse(savedTasks);
   console.log(parsedTasks);
+  taskList.textContent = "";
+
   parsedTasks.forEach((t) => {
     const task = `${t.task} - due by ${t.due}`;
     const li = document.createElement("li");
     li.textContent = task;
+    const btn = document.createElement("button");
+    btn.style.marginLeft = "10px";
+    btn.textContent = "Done";
+    btn.addEventListener("click", () => {
+      li.style.textDecoration = "line-through";
+      li.style.color = "green";
+    });
+    li.appendChild(btn);
     taskList.appendChild(li);
   });
 }
