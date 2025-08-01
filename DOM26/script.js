@@ -4,6 +4,8 @@ const dueDate = document.getElementById("dueDate");
 const addBtn = document.getElementById("addBtn");
 const taskList = document.getElementById("taskList");
 
+const taskForm = document.getElementById("taskForm");
+
 addBtn.addEventListener("click", (event) => {
   event.preventDefault();
 
@@ -11,19 +13,18 @@ addBtn.addEventListener("click", (event) => {
   const due = dueDate.value.trim();
   const existingTasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-  const dataArr = [];
   const data = {
     task: task,
     due: due,
   };
-  dataArr.push(data);
-  const newArr = existingTasks.concat(dataArr);
-  localStorage.setItem("tasks", JSON.stringify(newArr));
-  console.log(newArr);
-  //displayTasks();
+  existingTasks.push(data);
+  localStorage.setItem("tasks", JSON.stringify(existingTasks));
+  console.log(existingTasks);
+  taskForm.reset();
+  displayTasks();
 });
 
-/*function displayTasks() {
+function displayTasks() {
   const savedTasks = localStorage.getItem("tasks");
   console.log(savedTasks);
   const parsedTasks = JSON.parse(savedTasks);
@@ -34,4 +35,4 @@ addBtn.addEventListener("click", (event) => {
     li.textContent = task;
     taskList.appendChild(li);
   });
-}*/
+}
